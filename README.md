@@ -8,7 +8,7 @@
 >
 > ### 면접 질문 리스트
 >
-> Java
+> [Java](https://github.com/DevKTak/OTL/blob/main/interview/Java.md)
 >
-> Spring
+> [Spring](https://github.com/DevKTak/OTL/blob/main/interview/Spring.md)
 
