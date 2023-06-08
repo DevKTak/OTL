@@ -8,7 +8,9 @@
 >
 > ### 면접 질문 리스트 [Link](https://github.com/DevKTak/OTL/blob/main/interview)
 >
-> [Java](https://github.com/DevKTak/OTL/blob/main/interview/Java.md)
+> > [Java](https://github.com/DevKTak/OTL/blob/main/interview/Java.md)
 >
-> [Spring](https://github.com/DevKTak/OTL/blob/main/interview/Spring.md)
+> > [Spring](https://github.com/DevKTak/OTL/blob/main/interview/Spring.md)
+>
+> > [JPA](https://github.com/DevKTak/OTL/blob/main/interview/JPA.md)
 
