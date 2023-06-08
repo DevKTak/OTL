@@ -20,4 +20,4 @@
 >
 > > [Spring](https://github.com/DevKTak/OTL/blob/main/interview/Spring.md)
 >
-> > [JPA](
+> > [JPA](https://github.com/DevKTak/OTL/blob/main/interview/JPA.md)
