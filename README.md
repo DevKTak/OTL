@@ -6,7 +6,7 @@
 
 > ### 🧑🏼‍💻 개발 관련
 >
-> > [Elasticsearch]()
+> > [Elasticsearch](https://github.com/DevKTak/OTL/tree/main/development/Elasticsearch)
 > >
 > > > [Elasticsearch가 무엇인가요? (1 / 3)]()
 > > >
