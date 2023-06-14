@@ -18,7 +18,7 @@
 >
 > > [Spring Batch 적용해보기]()
 >
-> > [Layered Architecture to Hexagonal Architecture 변경해보기]()
+> > [Layered Architecture to Hexagonal Architecture 변경해보기](https://github.com/DevKTak/OTL/blob/main/development/LayeredToHexagonal.md)
 >
 > ### 🤔 면접 질문 리스트 [Link](https://github.com/DevKTak/OTL/blob/main/interview)
 >
