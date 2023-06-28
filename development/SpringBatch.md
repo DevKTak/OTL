@@ -15,8 +15,7 @@
 
 > **1번과 2번은 아래 블로그와 공식문서를 참고 하였습니다.**
 > 
-> [https://jojoldu.tistory.com/category/Spring%20Batch](https://jojoldu.tistory.com/category/Spring%20Batch)
-> 
+> [https://jojoldu.tistory.com/category/Spring%20Batch](https://jojoldu.tistory.com/category/Spring%20Batch)<br>
 > [https://docs.spring.io/spring-batch/docs/current/reference/html/index-single.html#whatsNew](https://docs.spring.io/spring-batch/docs/current/reference/html/index-single.html#whatsNew)
 
 1번 같은 경우는 그냥 똑같이 따라하면 되겠지 싶은 부분인데 이상하게도 가장 오래걸리고 막히는 단계였습니다. <br>
