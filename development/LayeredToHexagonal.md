@@ -49,3 +49,7 @@ Domain Service(클린 아키텍쳐에서의 UseCase): 도메인 모델과 어댑
   <img src="https://github.com/DevKTak/OTL/assets/68748397/d392c287-44f8-4537-aac6-19319e11ba91" align="center" width="49%">
 	<figcaption align="center" width="100%">헥사고날 아키텍처(포트 앤 어댑터 아키텍처)</figcaption>
 </p>
+
+*** 
+
+> **해당 프로젝트:** [https://github.com/f-lab-edu/hotel-java](https://github.com/f-lab-edu/hotel-java)
