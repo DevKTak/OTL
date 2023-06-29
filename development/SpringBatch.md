@@ -40,6 +40,8 @@
 
 
 
+
+
 TODO: 멱등성,
 스프링 배치를 사용하는 이유는 다음과 같습니다:
 
@@ -53,3 +55,5 @@ TODO: 멱등성,
 
 가능하면 단순화해서 복잡한 구조와 로직을 피해야합니다.
 
+***
+> **해당 프로젝트:** [https://github.com/f-lab-edu/hotel-java](https://github.com/f-lab-edu/hotel-java)

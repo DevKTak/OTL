@@ -51,5 +51,4 @@ Domain Service(클린 아키텍쳐에서의 UseCase): 도메인 모델과 어댑
 </p>
 
 *** 
-
 > **해당 프로젝트:** [https://github.com/f-lab-edu/hotel-java](https://github.com/f-lab-edu/hotel-java)
