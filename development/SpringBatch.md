@@ -165,17 +165,11 @@ Reader의 read()는 Item 하나를 반환하는 반면, Writer의 write()는 인
 **@JobScope, @StepScope:** 보통의 빈 생성은 application 실행 시점에 환경변수를 모두 끌고와서 처음으로 Singleton 빈을 만들고 DI로 받아서 사용하는데  
 반면, **`@JobScope`는 Step 선언문에서만 사용이 가능하고 Job이 실행될 때 Bean이 생성되고 `@StepScope`는 Step을 구성하는 ItemReader, ItemProcessor, ItemWriter에서 사용 가능하고 Step이 실행될 때 Bean이 생성됩니다.** `(애플리케이션 실행 시점이 아닌 Late Binding)`
 
-
-
-
-
-
-
-
-
-   
-
-### [개발 과정에서 실제 발생한 문제]
+**@JobParameter:** Spring Batch는 외부에서 파라미터를 주입받아 Batch 컴포넌트에서 사용할 수 있습니다.
+[Step]에서 사용하려면 @JobScope를 선언해줘야하고 [Tasklet, Reader, Processor/ Writer] 에서 사용하려면 @StepScope를 선언해줘야 합니다.   
+사용법: @Value("#{jobParameters[파라미터명]}") 타입 이름
+***
+### **[개발 과정에서 실제 발생한 문제]**
 
 
 
