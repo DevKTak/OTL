@@ -33,10 +33,131 @@
 ---
 관련 지식과 개발 과정에서 실제 발생한 문제들을 기록해 보겠습니다.
 
-### [관련 지식]
-**배치 애플리케이션이란?** `사람과 상호작용 없이` 이어지는 프로그램(작업)들의 실행   
+### **[관련 지식]**
+**배치 애플리케이션이란?** `사람과 상호작용 없이` 이어지는 프로그램(작업)들의 실행 (웹 애플리케이션과 지향점이 다름)   
 **스프링 배치란?** 대용량 데이터 일괄 처리를 위한 배치 프레임워크   
-![Alt text](image.png)
+**스프링 배치를 사용하는 이유?** 
+- 대용량 데이터 처리
+- 일괄 처리
+- 병렬 처리
+- 재시도, 스킵, 건너뛰기 등의 오류 처리 전략, 트랜잭션 기능
+- 사용자 개입없이 동작
+- 모니터링
+
+<br>
+<img width="829" alt="배치 관련 객체 관계도" src="https://github.com/DevKTak/OTL/assets/ 68748397/f362e965-5459-456e-b498-71ce98954455">
+
+**Job:** 배치 처리 작업의 `실행 단위`이며, Job은 여러 개의 Step으로 구성될 수 있습니다.
+```java
+  private final JobRepository jobRepository;
+  private final JpaTransactionManager jpaTransactionManager;
+  private final EntityManagerFactory entityManagerFactory;
+  private final HotelJavaBatchConfigurationProperties properties;
+
+  @Bean(name = "lastDayJob")
+  public Job lastDayJob() {
+    return new JobBuilder("lastDayJob", jobRepository)
+        .preventRestart() // 재실행 막기
+        .start(lastDayStep()) // Step을 인자로 전달하여 가장 기본이되는 SimpleJobBuilder를 생성합니다.
+        .build();
+  }
+```
+- JobRepository: 배치 처리 정보를 담고 있는 매커니즘, 어떤 Job이 실행되었으면 몇 번 실행되었고 언제 끝났는지 등 배치 처리에 대한 메타데이터를 저장
+  
+```java
+public class JobBuilder extends JobBuilderHelper<JobBuilder> {
+
+	@Deprecated(since = "5.0")
+	public JobBuilder(String name) {
+		super(name);
+	}
+
+	public JobBuilder(String name, JobRepository jobRepository) {
+		super(name);
+		super.repository(jobRepository);
+	}
+
+	public SimpleJobBuilder start(Step step) {
+		return new SimpleJobBuilder(this).start(step);
+	}
+
+	public JobFlowBuilder start(Flow flow) {
+		return new FlowJobBuilder(this).start(flow);
+	}
+
+	public JobFlowBuilder flow(Step step) {
+		return new FlowJobBuilder(this).start(step);
+	}
+}
+```
+***
+**Step:** Job을 구성하는 `작업의 단위`이며, 실질적인 배치 처리를 정의하고 제어하는데 필요한 모든 정보가 있는 도메인 객체입니다.
+```java
+  @Bean
+  public Step lastDayStep() {
+    return new StepBuilder("lastDayStep", jobRepository)
+        //<Reader에서 반환할 타입, Writer에 파라미터로 넘어올 타입>
+        // chunkSize: Reader & Writer가 묶일 Chunk 트랜잭션 범위
+        // 쓰기 시에 청크 단위로 writer() 메서드를 실행시킬 단위를 지정, 즉 커밋단위가 properties.getStock().getChunkSize()
+        .<Room, Stock>chunk(properties.getStock().getChunkSize(), jpaTransactionManager)
+        .reader(readerLastDay())
+        .processor(processorLastDay(null))
+        .writer(writerLastDay())
+        .build();
+  }
+```
+***
+**ItemReader:** Step의 대상이 되는 배치 데이터를 읽어오는 인터페이스입니다. ItemReader의 가장 큰 장점은 데이터를 `Streaming` 할 수 있는 것입니다.
+read() 메소드는 데이터를 하나씩 가져와 ItemWriter로 데이터를 전달하고, 다음 데이터를 다시 가져 옵니다.
+이를 통해 **reader & processor & writer가 Chunk 단위로 수행되고 주기적으로 Commit 됩니다.**
+수백, 수천 개 이상의 데이터를 한번에 가져와서 메모리에 올려놓게 되면 좋지 않기 때문에 배치 프로젝트에서 제공하는 PagingItemReader 구현체를 사용할 수 있습니다. 구현체들 중 저는 JpaPaginItemReader를 적용해보았습니다.
+```java
+  @StepScope
+  @Bean(destroyMethod = "")
+  public JpaPagingItemReader<Room> readerLastDay() {
+    return new JpaPagingItemReaderBuilder<Room>()
+        .name("readerLastDay")
+        // JPA를 사용하기 때문에 영속성 관리를 위해 EntityManager를 할당해줘야 합니다.
+        .entityManagerFactory(entityManagerFactory)
+        .pageSize(properties.getStock().getChunkSize()) // pageSize 디폴트는 10
+        .queryString("SELECT r FROM Room r WHERE r.stockBatchDateTime IS NOT NULL")
+        .build();
+  }
+```
+- chunkSize와 pageSize 갯수는 같게 해야합니다. 
+- 예를들어 chunkSize = 100, pageSize = 10 이면 chunk 단위로 Reader에서 Processor로 전달되기 때문에 100개를 채워야만 데이터가 전달됩니다.   
+10번을 조회해야해서 문제가 되는것이 아니라 JpaPagingItemReader는 페이지를 읽을 때, 이전 트랜잭션을 초기화 시키기 때문에 마지막 조회를 제외한 9번의 조회 결과들이 트랜잭션 세션이 전부 종료되어 **org.hibernate.LazyInitializationException**을 발생시킵니다.
+***
+**ItemProcesor:** 
+```java
+  @Bean
+  @StepScope
+  public ItemProcessor<Room, Stock> processorLastDay(@Value("#{jobParameters[now]}") LocalDateTime now) {
+    return room -> {
+      room.changeStockBatchDateTime(now);
+
+      return Stock.builder()
+          .room(room)
+          .date(LocalDate.now().plusDays(properties.getStock().getDay()))
+          .quantity(properties.getStock().getQuantity())
+          .build();
+    };
+  }
+```
+***
+**ItemWriter:**
+***
+**@JobScope, @StepScope:**  기본 빈 생성은 싱글턴이지만 해당 메서드는 Step의 주기에 따라 새로운 빈을 생성합니다. Step의 메서드가 실행 될 때마다 새로운 빈을 만들기 때문에 지연 생성이 가능합니다.`(Late Binding)`, **`@JobScope`는 Step 선언문에서만 사용이 가능하고 `@StepScope`는 Step을 구성하는 ItemReader, ItemProcessor, ItemWriter에서 사용 가능합니다.**
+
+
+
+
+
+
+
+
+
+   
 
 ### [개발 과정에서 실제 발생한 문제]
 
