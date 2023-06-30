@@ -100,6 +100,9 @@ public class JobBuilder extends JobBuilderHelper<JobBuilder> {
         // chunkSize: Reader & Writer가 묶일 Chunk 트랜잭션 범위
         // 쓰기 시에 청크 단위로 writer() 메서드를 실행시킬 단위를 지정, 즉 커밋단위가 properties.getStock().getChunkSize()
         .<Room, Stock>chunk(properties.getStock().getChunkSize(), jpaTransactionManager)
+        .faultTolerant()
+        .retryLimit(3)
+        .retry(Exception.class) // Exception이 발생할 경우에만 최대 재시도 횟수 3회
         .reader(readerLastDay())
         .processor(processorLastDay(null))
         .writer(writerLastDay())
@@ -128,7 +131,9 @@ read() 메소드는 데이터를 하나씩 가져와 ItemWriter로 데이터를 
 - 예를들어 chunkSize = 100, pageSize = 10 이면 chunk 단위로 Reader에서 Processor로 전달되기 때문에 100개를 채워야만 데이터가 전달됩니다.   
 10번을 조회해야해서 문제가 되는것이 아니라 JpaPagingItemReader는 페이지를 읽을 때, 이전 트랜잭션을 초기화 시키기 때문에 마지막 조회를 제외한 9번의 조회 결과들이 트랜잭션 세션이 전부 종료되어 **org.hibernate.LazyInitializationException**을 발생시킵니다.
 ***
-**ItemProcesor:** 
+**ItemProcesor:** ItemProcessor는 ItemReader로 읽어 온 배치 데이터를 변환하는 역할을 수행합니다. ItemProcessor는 필수로 만들 필요는 없습니다.   
+비즈니스 로직의 분리 : ItemWriter는 저장 수행하고, ItemProcessor는 로직 처리만 수행해 역할을 명확하게 분리
+     읽어온 배치 데이터와 씌여질 데이터의 타입이 다를 경우에 대응할 수 있기 때문
 ```java
   @Bean
   @StepScope
@@ -145,9 +150,20 @@ read() 메소드는 데이터를 하나씩 가져와 ItemWriter로 데이터를 
   }
 ```
 ***
-**ItemWriter:**
+**ItemWriter:** 가공된 데이터를 저장하거나 다른 시스템으로 전송하는 역할을 담당합니다.   
+Reader와 Processor를 거쳐 처리된 Item을 Chunk 단위 만큼 쌓은 뒤 이를 Writer에 전달합니다.   
+Reader의 read()는 Item 하나를 반환하는 반면, Writer의 write()는 인자로 Item List를 받습니다.
+```java
+ private JpaItemWriter<Stock> writerLastDay() {
+    JpaItemWriter<Stock> jpaItemWriter = new JpaItemWriter<>();
+    jpaItemWriter.setEntityManagerFactory(entityManagerFactory);
+
+    return jpaItemWriter;
+  }
+```
 ***
-**@JobScope, @StepScope:**  기본 빈 생성은 싱글턴이지만 해당 메서드는 Step의 주기에 따라 새로운 빈을 생성합니다. Step의 메서드가 실행 될 때마다 새로운 빈을 만들기 때문에 지연 생성이 가능합니다.`(Late Binding)`, **`@JobScope`는 Step 선언문에서만 사용이 가능하고 `@StepScope`는 Step을 구성하는 ItemReader, ItemProcessor, ItemWriter에서 사용 가능합니다.**
+**@JobScope, @StepScope:** 보통의 빈 생성은 application 실행 시점에 환경변수를 모두 끌고와서 처음으로 Singleton 빈을 만들고 DI로 받아서 사용하는데  
+반면, **`@JobScope`는 Step 선언문에서만 사용이 가능하고 Job이 실행될 때 Bean이 생성되고 `@StepScope`는 Step을 구성하는 ItemReader, ItemProcessor, ItemWriter에서 사용 가능하고 Step이 실행될 때 Bean이 생성됩니다.** `(애플리케이션 실행 시점이 아닌 Late Binding)`
 
 
 
