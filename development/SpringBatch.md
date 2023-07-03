@@ -31,7 +31,7 @@
 
 ## **4번**
 ---
-관련 지식과 개발 과정에서 실제 발생한 문제들을 기록해 보겠습니다.
+관련 지식과 개발 과정에서 실제 발생한 문제들을 기록해 보겠습니다. (@Deprecated 되거나 메소드의 파라미터 형식 변경 등의 문제는 해당 프로젝트의 코드를 참고 바라겠습니다.)
 
 ### **[관련 지식]**
 **배치 애플리케이션이란?** `사람과 상호작용 없이` 이어지는 프로그램(작업)들의 실행 (웹 애플리케이션과 지향점이 다름)   
@@ -165,41 +165,57 @@ Reader의 read()는 Item 하나를 반환하는 반면, Writer의 write()는 인
 **@JobScope, @StepScope:** 보통의 빈 생성은 application 실행 시점에 환경변수를 모두 끌고와서 처음으로 Singleton 빈을 만들고 DI로 받아서 사용하는데  
 반면, **`@JobScope`는 Step 선언문에서만 사용이 가능하고 Job이 실행될 때 Bean이 생성되고 `@StepScope`는 Step을 구성하는 ItemReader, ItemProcessor, ItemWriter에서 사용 가능하고 Step이 실행될 때 Bean이 생성됩니다.** `(애플리케이션 실행 시점이 아닌 Late Binding)`
 
-**@JobParameter:** Spring Batch는 외부에서 파라미터를 주입받아 Batch 컴포넌트에서 사용할 수 있습니다.
-[Step]에서 사용하려면 @JobScope를 선언해줘야하고 [Tasklet, Reader, Processor/ Writer] 에서 사용하려면 @StepScope를 선언해줘야 합니다.   
-사용법: @Value("#{jobParameters[파라미터명]}") 타입 이름
+**@JobParameter:** Spring Batch는 외부에서 파라미터를 주입받아 Batch 컴포넌트에서 사용할 수 있습니다.   
+`[Step]에서 사용하려면 @JobScope`를 선언해줘야하고 `[Tasklet, Reader, Processor/ Writer] 에서 사용하려면 @StepScope`를 선언해줘야 합니다.   
+사용법: `@Value("#{jobParameters[파라미터명]}") 타입 이름`
 ***
 ### **[개발 과정에서 실제 발생한 문제]**
+<img width="982" alt="image" src="https://github.com/DevKTak/OTL/assets/68748397/a9793e70-168a-4636-9fb2-5327521cfadb">
+<img width="982" alt="image" src="https://github.com/DevKTak/OTL/assets/68748397/44f04d90-d227-4106-a137-6df328122bc2">
 
+Room과 Stock Entity는 1 : N 관계입니다.   
+62라인에서 JPQL로 Room 객체를 영속성 컨텍스트에서 조회하고 Processor에 청크단위로 전달합니다.   
+processorLastDay() 메소드에서 룸 객체에 있는 stockBatchDateTime 필드를 갱신하기 위해 70라인에서 chnageStockBatchDateTime() 메서드를 호출합니다.   
+테스트 결과 room 테이블에 stockBatchDateTime 컬럼 값이 null 이였습니다.
 
+저는 room 객체가 당연히 더티 체킹으로 stockBatchDateTime 컬럼에 현재 시간 값이 들어갈거라고 생각하였습니다.   
+그러나 컬럼 값이 null 인것을 보고 영속 상태가 풀리는건가 싶어서 처음엔 아래 두 가지 방법으로 처리하였습니다.
+```java
+1. 
+room.changeStockBatchDateTime(now);
+Room mergedRoom = entityManager.merge(room);
+```
 
+```java
+2. 
+room.changeStockBatchDateTime(now);
+Room persistRoom = roomRepository.findById(room.getId());
+```
 
+1. 가급적이면 EntityManager를 직접 사용하는 로직을 자제하는 편이 좋다고 생각되었습니다.   
+2. 원하는대로 결과값은 나왔지만 아무리 생각해도 영속상태가 아닌게 믿기지 않았습니다.
 
+### **결론**
+> 관계 매핑이 된 컬럼에 대해서는 영속 상태 전이가 이뤄지지 않으면 더티 체킹이 되지 않는것 이였음으로 writer에서 Stock Entity가 저장될 때 영속 상태 전이 속성을 사용해서 Room Entity도 더티 체킹이 될 수 있도록 하였습니다.
 
+```java
+public class Stock extends BaseTimeEntity {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
+  @ManyToOne(cascade = CascadeType.MERGE) // <-- 바로 이 부분
+  @JoinColumn(name = "room_id")
+  private Room room;
+}
+```
+```java
+private JpaItemWriter<Stock> writerLastDay() {
+    JpaItemWriter<Stock> jpaItemWriter = new JpaItemWriter<>();
+    jpaItemWriter.setEntityManagerFactory(entityManagerFactory);
 
-
-
-
-
-
-
-<br><br><br><br><br><br><br><br><br>
-
-*** 
-*** 
-TODO: 멱등성,
-스프링 배치를 사용하는 이유는 다음과 같습니다:
-
-확장성: 스프링 배치는 대용량 데이터 처리를 위해 확장성 있는 아키텍처를 제공합니다. 매일 한 번의 휴면 회원 처리는 현재로서는 소규모 작업이지만, 앞으로 시스템이 확장될 가능성이 있다면 스프링 배치를 사용하여 대량 데이터 처리에 대비할 수 있습니다.
-
-유연성: 스프링 배치는 다양한 배치 처리 시나리오에 대응할 수 있는 유연성을 제공합니다. 예를 들어, 휴면 회원 처리 작업에 추가적인 로직이 필요해질 수 있다면 스프링 배치의 기능과 확장성을 활용하여 이를 구현할 수 있습니다.
-
-오류 처리: 대용량 데이터 처리 시 오류가 발생할 수 있습니다. 스프링 배치는 안정적인 배치 처리를 위해 재시도, 건너뛰기, 오류 처리 등의 기능을 제공합니다. 이를 통해 데이터 처리 중 발생하는 문제를 관리하고 복구할 수 있습니다.
-
-모니터링과 관리: 스프링 배치는 배치 작업의 진행 상황을 모니터링하고 관리할 수 있는 기능을 제공합니다. 작업의 진행 상황, 성능 지표, 로그 등을 확인하여 작업을 효율적으로 관리할 수 있습니다.
-
-가능하면 단순화해서 복잡한 구조와 로직을 피해야합니다.
-
+    return jpaItemWriter;
+  }
+```
 ***
 > **해당 프로젝트:** [https://github.com/f-lab-edu/hotel-java](https://github.com/f-lab-edu/hotel-java)
