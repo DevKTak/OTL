@@ -218,4 +218,6 @@ private JpaItemWriter<Stock> writerLastDay() {
   }
 ```
 ***
+
+> 이렇게 처음 접하는 기술을 사용하는 것에 대한 두려움을 극복하는 첫 번째 훈련을 무사히 마쳤습니다.   
 > **해당 프로젝트:** [https://github.com/f-lab-edu/hotel-java](https://github.com/f-lab-edu/hotel-java)
