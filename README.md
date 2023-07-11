@@ -29,3 +29,9 @@
 > > [JPA](https://github.com/DevKTak/OTL/blob/main/interview/JPA.md)
 >
 > > [DB](https://github.com/DevKTak/OTL/blob/main/interview/DB.md)
+>
+>> [OS](https://github.com/DevKTak/OTL/blob/main/interview/OS.md)
+>
+>> [Network](https://github.com/DevKTak/OTL/blob/main/interview/Network.md)
+>
+>> [Data Structure](https://github.com/DevKTak/OTL/blob/main/interview/DataStructure.md)
