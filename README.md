@@ -26,7 +26,7 @@
 >
 >> [Data Structure](https://github.com/DevKTak/OTL/blob/main/interview/DataStructure.md)
 >
-> ### 📝 오늘의 추가 지식 Log
+> ### 📝 오늘의 추가 지식 Log [Link]()
 >> [2023.07.10 ~ 2023.07.16]()   
 >> [2023.07.17 ~ 2023.07.23]()   
 >> [2023.07.24 ~ 2023.07.30]()
