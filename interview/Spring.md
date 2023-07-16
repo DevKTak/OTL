@@ -68,7 +68,8 @@ A. 역할과 책임을 가진 객체들이 메시지를 주고 받으면서 협�
 >
 > **AOP**: OOP를 보완하기 위해 나옴, 횡단 관심사를 처리함   
 >
-> <img src="https://github.com/f-lab-edu/hotel-java/assets/68748397/23b89718-b229-4f61-9bce-f902ce2b21ca" width="45%">
+> <img src="https://github.com/f-lab-edu/hotel-java/assets/68748397/23b89718-b229-4f61-9bce-f902ce2b21ca" width="85%">
+> <img width="85%" alt="image" src="https://github.com/f-lab-edu/hotel-java/assets/68748397/08c3673d-3f80-4477-9c58-5bab54bb7f48">
 
 > ### **Q. 스프링 3대 요소**
 > A.   
