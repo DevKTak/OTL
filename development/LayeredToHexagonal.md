@@ -7,6 +7,25 @@
 가장 일반적으로 많이 쓰이는 구조이며 보통 `프레젠테이션 -> 비즈니스 로직 -> 데이터 엑세스`의 3계층으로 구분을 하며 제어의 흐름은 상위에서 하위로 흐르고 이에 따른 소스코드의 의존성도 제어의 흐름을 따르게 됩니다.  
 따라서 마지막에 있는 데이터 액세스 계층이 변경되었을 때, 비즈니스 로직 계층이 영향을 받게 됩니다.  
 
+Spring의 경우     
+Presentation Layer -> View와 Controller,   
+Business Layer -> Service   
+Persistence Layer -> DAO   
+Database Layer -> 데이터베이스 부분   
+이렇게 계층 아키텍쳐를 구현하는 방법 중 하나로 MVC 패턴의 Model, View, Controller가 사용됩니다.
+
+<div style="display: flex">
+  <img width="50%" alt="image" src="https://github.com/f-lab-edu/hotel-java/assets/68748397/c31b7d52-1aaa-4a60-bd65-11f44c6dbc59">
+
+ <img width="50%" alt="image" src="https://github.com/f-lab-edu/hotel-java/assets/68748397/c0f1ca77-6bec-41da-a528-a5c6c47ba316">
+</div>
+
+<div style="display: flex">
+  <img width="50%" alt="image" src="https://github.com/f-lab-edu/hotel-java/assets/68748397/b93b496c-83b5-46e0-a1d9-4c0c6c324a3e">
+
+  <img width="50%" alt="image" src="https://github.com/f-lab-edu/hotel-java/assets/68748397/54f4bf2a-b801-4da6-8d7e-b52ce32a741d">
+</div>
+
 ## **Hexagonal Architecture**
 고수준의 비즈니스 로직(도메인 모델)을 표현하는 내부 영역과 저수준의 인터페이스 처리를 담당하는 외부 영역(인프라)으로 나뉩니다.  
 헥사고날의 가장 큰 특징은 Dependency Rule이 적용되어 있는것입니다.
@@ -25,6 +44,19 @@ Domain Model: 실제 핵심 비즈니스 로직을 처리하는 부분
 
 Domain Service(클린 아키텍쳐에서의 UseCase): 도메인 모델과 어댑터를 이용해서 비즈니스 로직과 인프라를 오케스트레이션 하는 dumb한 레이어
 ```  
+
+<img width="60%" alt="image" src="https://github.com/f-lab-edu/hotel-java/assets/68748397/08ee9312-2cb7-4b11-b8ed-a15dea749e81">
+
+### 헥사고날 아키텍처의 장점
+--- 
+1. 명확한 관심사의 분리
+   - 외부와의 연결에 문제가 생기면? 어댑터
+   - 인터페이스는? 포트
+   - 처리중간에 EventBridge에 이벤트를 보내거나 트레이스 로그를 심고 싶다면? 서비스
+   - 비즈니스 로직이 제대로 동작하지 않으면? 도메인 모델
+2. 쉬운 테스트
+   - 자기 역할만 Port 기반 모킹을 통해 테스트
+   - 비즈니스 로직은 의존성이 없기 때문에 모킹(mocking)이 거의 없음
 
 ## **결론**
 > 외부와의 통신을 인터페이스로 추상화하여 인프라의 변화가 생기더라도 외부 코드나 로직의 주입을 막아서 애플리케이션 동작(도메인 로직 혹은 비즈니스 로직)에는 영향을 주지 않는 구조인 헥사고날로 아래와 같이 리팩토링 해보았습니다. + 학습목적
