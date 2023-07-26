@@ -35,6 +35,104 @@ Database Layer -> 데이터베이스 부분
 
 의존성은 반드시 밖에서 안으로만 존재해야하며, 내부 영역은 외부 영역에 대해서 알지(참조, 임포팅) 못하도록 해야합니다.  
 
+#### **Dependency Rule 적용으로 인한 장점 예시 코드**   
+```java
+Domain Model (도메인 모델):
+
+// Order.java
+public class Order {
+    private long orderId;
+    private String customerName;
+    private List<OrderItem> items;
+
+    // Getters and setters
+}
+
+// OrderItem.java
+public class OrderItem {
+    private long itemId;
+    private String productName;
+    private int quantity;
+
+    // Getters and setters
+}
+
+Persistence Layer (퍼시스턴스 레이어):
+
+// OrderRepository.java (인터페이스)
+public interface OrderRepository {
+    Order findById(long orderId);
+    List<Order> findAll();
+    void save(Order order);
+    void update(Order order);
+    void delete(long orderId);
+}
+
+// InMemoryOrderRepository.java (인메모리 데이터베이스를 사용하는 구현체)
+public class InMemoryOrderRepository implements OrderRepository {
+    private Map<Long, Order> orderData = new HashMap<>();
+
+    @Override
+    public Order findById(long orderId) {
+        return orderData.get(orderId);
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return new ArrayList<>(orderData.values());
+    }
+
+    @Override
+    public void save(Order order) {
+        orderData.put(order.getOrderId(), order);
+    }
+
+    @Override
+    public void update(Order order) {
+        orderData.put(order.getOrderId(), order);
+    }
+
+    @Override
+    public void delete(long orderId) {
+        orderData.remove(orderId);
+    }
+}
+
+Service Layer (서비스 레이어):
+
+// OrderService.java
+public class OrderService {
+    private OrderRepository orderRepository;
+
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+
+    public Order createOrder(String customerName, List<OrderItem> items) {
+        long nextOrderId = generateNextOrderId();
+        Order order = new Order(nextOrderId, customerName, items);
+        orderRepository.save(order);
+        return order;
+    }
+
+    public Order findOrderById(long orderId) {
+        return orderRepository.findById(orderId);
+    }
+
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
+    }
+
+    // 기타 주문과 관련된 비즈니스 로직들
+    // ...
+}
+```
+위 코드에서 OrderService는 OrderRepository 인터페이스에만 의존합니다. 실제 데이터 액세스 계층의 구현체(InMemoryOrderRepository)는 의존성 주입을 통해 외부에서 주입되므로, OrderService 클래스는 데이터 액세스 계층의 구현체를 알 필요가 없습니다.
+
+만약 데이터베이스 연동 방식이 변경되어 새로운 데이터베이스 연동 방식을 사용하려면, InMemoryOrderRepository를 새로운 데이터베이스 연동 방식에 맞게 수정하고 새로운 구현체(JdbcOrderRepository 또는 HibernateOrderRepository 등)를 작성합니다. 그러나 OrderService 클래스는 수정할 필요가 없이 그대로 사용할 수 있습니다. 이는 OrderService 클래스가 OrderRepository 인터페이스에만 의존하기 때문입니다.
+
+이렇게 헥사고날 아키텍처에서는 데이터 액세스 계층의 변경이 비즈니스 로직 계층에 영향을 덜 미치도록 설계되어 있습니다. 비즈니스 로직 계층과 데이터 액세스 계층을 완전히 분리하고, 인터페이스를 사용하여 의존성을 역전시킴으로써 더 유연하고 확장 가능한 아키텍처를 구현할 수 있습니다.
+
 ```
 Ports: 인터페이스, DI(Dependency Inversion) 를 위한 추상화, 변경이 잦은 어댑터와 애플리케이션의 결합도를 낮추는 역할
 
