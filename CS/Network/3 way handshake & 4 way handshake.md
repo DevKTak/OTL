@@ -1,5 +1,5 @@
 # 3 Way Handshake
-TCP 통신을 시작할 때 논리적으로 연결을 하기 위한 방식
+> TCP 통신을 시작할 때 논리적으로 연결을 하기 위한 방식
 
 <img width="585" alt="image" src="https://github.com/f-lab-edu/hotel-java/assets/68748397/d9a9f804-50af-4c81-971c-704ebb1458fd">
 
@@ -18,7 +18,7 @@ TCP 통신을 시작할 때 논리적으로 연결을 하기 위한 방식
 ---
 
 # 4 Way Handshake
-TCP 통신을 종료할 때 논리적인 연결을 해제하기 위한 방식
+> TCP 통신을 종료할 때 논리적인 연결을 해제하기 위한 방식
 
 ## 4 Way Handshake 방식을 사용하는 이유
 데이터 유실을 방지하기 위함입니다.
