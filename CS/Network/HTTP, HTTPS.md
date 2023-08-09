@@ -4,6 +4,10 @@
 ## 특징
 - Application Layer 프로토콜, :80
 - 무상태(Stateless) 프로토콜 상태를 유지하기 위해 `Cookie`와 `Session` 사용
+- 비연결성(Connectionless)
+- Stateless 하기 때문에 서버 확장성이 높음(스케일 아웃)
+
+
 
 ## HTTP 요청 메서드
 1. GET : 클라이언트가 서버에 리소스를 요청할 때 사용 (CRUD에서 Read)
