@@ -29,4 +29,5 @@
 > ### 📝 오늘의 추가 지식 Log [Link]()
 >> [2023.07.10 ~ 2023.07.16](https://github.com/DevKTak/OTL/blob/main/TIL/2023/7/2023.07.10-2023.07.16.md)   
 >> [2023.07.17 ~ 2023.07.23](https://github.com/DevKTak/OTL/blob/main/TIL/2023/7/2023.07.17-2023.07.23.md)   
->> [2023.07.24 ~ 2023.07.30](https://github.com/DevKTak/OTL/blob/main/TIL/2023/7/2023.07.24-2023.07.30.md)   
+>> [2023.07.31 ~ 2023.08.06](https://github.com/DevKTak/OTL/blob/main/TIL/2023/8/2023.07.31-2023.08.06.md)
+>> [2023.08.07 ~ 2023.08.13](https://github.com/DevKTak/OTL/blob/main/TIL/2023/8/2023.08.07-2023.08.13.md)   
