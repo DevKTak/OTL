@@ -10,6 +10,12 @@
 - `소켓이 연결됐다` 라는 것은 사실은 **물리적으로 진짜 연결된 것이 아닌 논리적으로 연결된 것**입니다.
 - 예) 실시간 게임
 
+## TCP 신뢰성은 어떻게 보장하는가?
+https://github.com/lunchScreen/Interview_Questions/issues/97
+흐름제어중
+stop and wait 패킷을 받아야지만 그다음 패킷은 전송할수잇어서 비효율적이라서
+sliding window를 사용한다.
+
 # UDP(User Datagram Protocol)
 전송계층의 비연결 지향적 프로토콜
 
