@@ -5,12 +5,16 @@
 > ---
 
 > ### 🧑🏼‍💻 개발 관련
-> > [CI/CD 적용해보기]()
+>> [CI/CD 적용? 해볼게요]()
 >
-> > [Spring Batch 적용해보기](https://github.com/DevKTak/OTL/blob/main/development/SpringBatch.md)
+>> [Spring Batch 적용? 해볼게요](https://github.com/DevKTak/OTL/blob/main/development/SpringBatch.md)
 >
-> > [Layered Architecture to Hexagonal Architecture 변경해보기](https://github.com/DevKTak/OTL/blob/main/development/LayeredToHexagonal.md)
+> > [Layered Architecture to Hexagonal Architecture 변경? 해볼게요](https://github.com/DevKTak/OTL/blob/main/development/LayeredToHexagonal.md)
 >
+>> [동시성 이슈 해결? 해볼게요]()
+>>> [[동시성 이슈 해결 1탄] 동시성 이슈를 해결하기 위한 사전 지식 쌓아보기]()   
+>>> [[동시성 이슈 해결 2탄] 여러가지 동시성 제어 방식들을 적용해보기]()   
+>>> [[동시성 이슈 해결 3탄] 현재 프로젝트에 가장 적합한 동시성 제어 방식 적용해보기]()
 > ### 🤔 면접 질문 리스트 [Link](https://github.com/DevKTak/OTL/blob/main/interview)
 >> [DB](https://github.com/DevKTak/OTL/blob/main/interview/DB.md)
 >
