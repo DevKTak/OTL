@@ -4,7 +4,7 @@
 
 > ---
 
-> ### 🧑🏼‍💻 개발 관련
+> ### 🧑🏼‍💻 개발 관련? 해볼게요
 >> [CI/CD 적용? 해볼게요]()
 >
 >> [Spring Batch 적용? 해볼게요](https://github.com/DevKTak/OTL/blob/main/development/SpringBatch.md)
