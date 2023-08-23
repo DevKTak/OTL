@@ -4,7 +4,7 @@
 > - 특정 열에 대한 검색 성능 향상 
 
 ## Index를 쓰는 이유?
-조건을 만족하는 튜플(들)을 조회하기 위해!   
+**`조건을 만족하는 튜플(들)을 조회하기 위해!`**   
 빠르게 `정렬(order by)`하거나 `그룹핑(group by)` 하기 위해!
 
 ## 인덱스의 단점
@@ -13,7 +13,6 @@
 
 ## 보통 인덱스는 어떤 컬럼에 걸어 주나요?
 - 주로 **`검색 조건으로 자주 사용되는 열`** 이나 **`JOIN 조건에 사용되는 열`** 에 인덱스를 생성하는 것이 좋습니다.
-
 
 ## 인덱스 관련 SQL문
 ```sql
@@ -72,7 +71,7 @@ SELECT * FROM 테이블명 IGNORE INDEX(인덱스명) WHERE 조건
 - DB에서 데이터를 조회할 때 secondary storage에 최대한 적게 접근하는 것이 성능 면에서 좋습니다.
 - secondary storage는 block 단위로 읽고 씁니다.
 - **B tree는 노드에 여러개의 데이터를 저장**할 수 있기 때문에 **block 단위 저장 공간**을 알차게 사용할 수 있습니다.
-- self-balancing BST에 비해 **secondary strage 접근을 적게** 합니다.
+- self-balancing BST에 비해 **secondary storage 접근을 적게** 합니다.
 
 ## Hash index를 쓰는건?
 - hash index는 삽입/삭제/조회의 시간 복잡도가 O(1)
@@ -81,7 +80,8 @@ SELECT * FROM 테이블명 IGNORE INDEX(인덱스명) WHERE 조건
 - 해시 인덱스는 해시 테이블로 구현되어 있기 때문에 array를 활용해서 저장이 되는데 데이터가 쌓이다 보면 늘려줘야하는 순간에 더 큰 사이즈로 바꿔주는것을 rehashing이라고 하고 **`리해싱에 대한 부담`** 이 있습니다.
 
 # B+tree
-> B-tree의 변형으로 리프 노드에만 데이터가 저장되며 내부 노드는 키만 가집니다. 검색 및 범위 검색에 사용됩니다.
+> `B-tree의 변형`으로 `리프 노드에만 데이터가 저장되며` `내부 노드는 키만 가집니다.` 검색 및 범위 검색에 사용됩니다.
+
 <img width="1461" alt="image" src="https://github.com/DevKTak/DevKTak/assets/68748397/33578bc6-f269-4ee6-90e2-17ef3785a8a8">
 
 # B*tree
@@ -90,3 +90,10 @@ SELECT * FROM 테이블명 IGNORE INDEX(인덱스명) WHERE 조건
 ### 참고
 > - [DB index](https://www.youtube.com/watch?v=IMDH4iAQ6zM)   
 > - [B tree의 개념과 특징](https://www.youtube.com/watch?v=bqkcoSm_rCs)
+
+# 추가
+## B tree에서 삽입 시 비용이 비싼 이유
+루트 노드부터 다시 탐색을 해야하기 때문에
+
+## index(a, b) 멀티 컬럼 인덱스로 설정하고 where b = 1 and a = 3 순서로 조회하면 인덱스를 탈까?
+앞에 컬럼 기준으로 먼저 정렬 후 뒤에 컬럼 정렬하기 때문에 인덱스를 제대로 타지 못합니다. 순서가 중요합니다. 결국 root부터 leaf 노드까지 탐색하게되는 인덱스 풀스캔이 일어납니다.
