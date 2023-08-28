@@ -5,7 +5,7 @@
 > ---
 
 > ### 🧑🏼‍💻 프로젝트 이슈 해결? 해볼게요 [Link](https://github.com/DevKTak/OTL/tree/main/project_issue)
->> [JPA N + 1? 해볼게요]
+>> [JPA N + 1 문제 해결? 해볼게요]
 > 
 >> [CI/CD 적용? 해볼게요](https://github.com/DevKTak/OTL/blob/main/project_issue/CIAndCD.md)
 >
