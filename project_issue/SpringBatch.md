@@ -196,7 +196,7 @@ Room persistRoom = roomRepository.findById(room.getId());
 2. 원하는대로 결과값은 나왔지만 아무리 생각해도 영속상태가 아닌게 믿기지 않았습니다.
 
 ### **결론**
-> 관계 매핑이 된 컬럼에 대해서는 영속 상태 전이가 이뤄지지 않으면 더티 체킹이 되지 않는것 이였음으로 writer에서 Stock Entity가 저장될 때 영속 상태 전이 속성을 사용해서 Room Entity도 더티 체킹이 될 수 있도록 하였습니다.
+> 관계 매핑이 된 컬럼에 대해서는 영속 상태 전이가 이뤄지지 않으면 더티 체킹이 되지 않는것 이였음으로 **`writer에서 Stock Entity가 저장될 때`** **`영속 상태 전이 속성을 사용해서 Room Entity도 더티 체킹이 될 수 있도록`** 하였습니다.
 
 ```java
 public class Stock extends BaseTimeEntity {
