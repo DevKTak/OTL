@@ -58,7 +58,7 @@ Aspect 클래스에 정의된 부가 기능을 사용하기 위해서 원하는 
 ---
 
 **참고**
-> - [AOP와 @Transactional의 동작원리](https://velog.io/@ann0905/AOP%EC%99%80-Transactional%EC%9D%98-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC)
+> - [AOP와 @Transactional의 동작원리 !!!!](https://velog.io/@ann0905/AOP%EC%99%80-Transactional%EC%9D%98-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC)
 > - [Spring의 트랜잭션 관리](https://yeonyeon.tistory.com/223)
 > - [동일한 bean에서는 @Transactional 적용이 되지 않는다. -호돌- ](https://yeonyeon.tistory.com/283#nav)
 > - [@Transactional 과 PROXY](https://velog.io/@chullll/Transactional-%EA%B3%BC-PROXY)
