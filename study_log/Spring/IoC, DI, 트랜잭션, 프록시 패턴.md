@@ -21,12 +21,20 @@
 
 ## @Transactional
 - @Transactional은 메서드가 실행되기 전 begin을 호출하고, 메서드가 종료한 후 commit을 호출합니다.
-
+- private 에서는 사용 불가
 
 # 프록시(Proxy)
-> 프록시 객체는 원래 객체를 감싸고 있는 객체입니다. 대리자 역할을 합니다.
+> **프록시 객체는 원래 객체를 감싸고 있는 객체입니다. 대리자 역할을 합니다.**
 - Spring에서 사용하는 **`JDK Proxy(Dynamic Proxy)`** 와 **`CGLib`** 이 있습니다.
-- SpringBoot에서는 기본적으로 **`JKD Proxy`** 를 사용합니다.
+  
+## JKD Proxy(Dynamic Proxy)
+- JDK Proxy는 타겟의 인터페이스를 기준으로 프록시 객체를 생성합니다.또한 JAVA의 `reflection`을 사용하여 프록시를 생성합니다.
+- Spring에서는 기본적으로 **`JKD Proxy`** 를 사용합니다.
+
+## CGLib
+- 인터페이스를 구현하지 않고도 해당 구현체를 reflection 없이 타겟 클래스에 대한 바이트 코드 조작을 통해 객체를 생성해주는 라이브러리 입니다. 때문에 성능적으로 JDK Proxy 보다 좋습니다.
+- SpringBoot에서는 기본적으로 **`CGLib Proxy`** 를 사용합니다.
+
 
 ## 프록시 패턴을 사용하는 이유
 - **보안 및 접근 제어:** 프록시를 사용하여 실제 객체에 접근하기 전에 인증 및 권한 검사를 수행할 수 있습니다.
@@ -37,6 +45,7 @@
 ---
 
 **참고**
+> - [AOP와 @Transactional의 동작원리](https://velog.io/@ann0905/AOP%EC%99%80-Transactional%EC%9D%98-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC)
 > - [Spring의 트랜잭션 관리](https://yeonyeon.tistory.com/223)
 > - [동일한 bean에서는 @Transactional 적용이 되지 않는다.](https://yeonyeon.tistory.com/283#nav)
 > - [@Transactional 과 PROXY](https://velog.io/@chullll/Transactional-%EA%B3%BC-PROXY)
