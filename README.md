@@ -13,7 +13,7 @@
 >
 >> [**`Layered Architecture to Hexagonal Architecture 구조 변경? 해볼게요`**](https://github.com/DevKTak/OTL/blob/main/project_issue/LayeredToHexagonal.md)
 >
->> 동시성 이슈 해결? 해볼게요 [Link](https://github.com/DevKTak/OTL/tree/main/project_issue/%EB%8F%99%EC%8B%9C%EC%84%B1)
+>> ### 동시성 이슈 해결? 해볼게요 [Link](https://github.com/DevKTak/OTL/tree/main/project_issue/%EB%8F%99%EC%8B%9C%EC%84%B1)
 >>> [**`[동시성 이슈 해결 1탄] 동시성 이슈를 해결하기 위한 사전 지식? 쌓아볼게요`**](https://github.com/DevKTak/OTL/blob/main/project_issue/%EB%8F%99%EC%8B%9C%EC%84%B1/%EB%8F%99%EC%8B%9C%EC%84%B1%20%EC%9D%B4%EC%8A%88%20%ED%95%B4%EA%B2%B0%201%ED%83%84.md)   
 >>> [**`[동시성 이슈 해결 2탄] 여러가지 동시성 제어 방식들? 적용해볼게요`**](https://github.com/DevKTak/OTL/blob/main/project_issue/%EB%8F%99%EC%8B%9C%EC%84%B1/%EB%8F%99%EC%8B%9C%EC%84%B1%20%EC%9D%B4%EC%8A%88%20%ED%95%B4%EA%B2%B0%202%ED%83%84.md)   
 >>> [**`[동시성 이슈 해결 3탄] 현재 프로젝트에 가장 적합한 동시성 제어 방식? 적용해볼게요`**](https://github.com/DevKTak/OTL/blob/main/project_issue/%EB%8F%99%EC%8B%9C%EC%84%B1/%EB%8F%99%EC%8B%9C%EC%84%B1%20%EC%9D%B4%EC%8A%88%20%ED%95%B4%EA%B2%B0%203%ED%83%84.md)
