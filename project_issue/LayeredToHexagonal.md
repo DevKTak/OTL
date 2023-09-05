@@ -180,5 +180,8 @@ Domain Service(클린 아키텍쳐에서의 UseCase): 도메인 모델과 어댑
 	<figcaption align="center" width="100%">헥사고날 아키텍처(포트 앤 어댑터 아키텍처)</figcaption>
 </p>
 
+**참고**   
+- https://www.inflearn.com/questions/584467/entity-%EB%A9%94%EC%86%8C%EB%93%9C-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0%EB%A1%9C-dto%EB%A5%BC-%EB%B0%9B%EB%8A%94-%EA%B2%83-%EA%B4%9C%EC%B0%AE%EC%9D%84%EA%B9%8C%EC%9A%94
+
 *** 
 > **해당 프로젝트:** [https://github.com/f-lab-edu/hotel-java](https://github.com/f-lab-edu/hotel-java)
