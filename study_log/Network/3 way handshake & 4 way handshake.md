@@ -21,7 +21,7 @@
 > TCP 통신을 종료할 때 논리적인 연결을 해제하기 위한 방식
 
 ## 4 Way Handshake 방식을 사용하는 이유
-데이터 유실을 방지하기 위함입니다.
+**`데이터 유실을 방지하기 위함입니다.`**
 
 <img width="579" alt="image" src="https://github.com/f-lab-edu/hotel-java/assets/68748397/0c9fd09c-b73c-440f-ba02-f0243247f8c3">
 
