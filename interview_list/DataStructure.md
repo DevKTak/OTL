@@ -33,6 +33,8 @@ A.
 ```
 ![image](https://github.com/f-lab-edu/hotel-java/assets/68748397/8a725964-5ae3-4388-ab7a-02ed51105a99)
 
+<img width="858" alt="image" src="https://github.com/f-lab-edu/hotel-java/assets/68748397/312dc466-b2bd-4fbb-8e18-3fce7f66227f">
+
 ```
 Q. ArrayList 내부적으로 어떻게 구현되어 있을까? 배열로 구현되어있다면 크기가 꽉차면 일반 배열처럼 예외가 발생할텐데 어떻게 무한히 데이터를 받을 수 있을까?
 A. 첫 element를 add 할 때 배열의 resize가 발생하고 배열 크기는 10으로 설정된다. 이후 가지고 있던 용량이 꽉 찼을때 현재 용량의 1.5배(기존의 크기 + 기존의 크기 / 2)를 늘린 새로운 배열에 기존 배열을 copy한다.
