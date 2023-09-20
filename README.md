@@ -42,9 +42,6 @@
 >> [Data Structure](https://github.com/DevKTak/OTL/blob/main/interview_list/DataStructure.md)
 >
 > ## 📝 오늘의 추가 지식 Log [Link]()
->> [2023.07.10 ~ 2023.07.16](https://github.com/DevKTak/OTL/blob/main/TIL/2023/7/2023.07.10-2023.07.16.md)   
->> [2023.07.17 ~ 2023.07.23](https://github.com/DevKTak/OTL/blob/main/TIL/2023/7/2023.07.17-2023.07.23.md)   
->> [2023.07.31 ~ 2023.08.06](https://github.com/DevKTak/OTL/blob/main/TIL/2023/8/2023.07.31-2023.08.06.md)   
->> [2023.08.07 ~ 2023.08.13](https://github.com/DevKTak/OTL/blob/main/TIL/2023/8/2023.08.07-2023.08.13.md)   
->> [2023.08.28 ~ 2023.09.03](https://github.com/DevKTak/OTL/blob/main/TIL/2023/9/2023.08.28-2023.09.03.md)   
->> [2023.09.04 ~ 2023.09.10](https://github.com/DevKTak/OTL/blob/main/TIL/2023/9/2023.09.04-2023.09.10.md)   
+>> [2023.07](https://github.com/DevKTak/OTL/blob/main/TIL/2023/2023.07.md)   
+>> [2023.08](https://github.com/DevKTak/OTL/blob/main/TIL/2023/2023.08.md)   
+>> [2023.09](https://github.com/DevKTak/OTL/blob/main/TIL/2023/2023.09.md)   
