@@ -94,7 +94,7 @@ A.
 - 자바 21(LTS): null에 해당하는 케이스를  스위치 내부에서 검사할 수 있음
 ```
 
-![Alt text](image.png)
+<img width="784" alt="image" src="https://github.com/DevKTak/OTL/assets/68748397/9660cbb2-01f6-4efa-a5e2-fc6b6e7feea8">
 
 <br>
 
