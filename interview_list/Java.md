@@ -86,7 +86,7 @@ A.
 ```
 Q. Java 몇까지 써봤는지? 자바 버전별 새로생긴 부분 정리
 A.
-- 자바 8(LTS): 람다식, 스트림, java.time 패키지, Optional, 함수형 인터페이스, 인터페이스 디폴트 메서드
+- 자바 8(LTS): 람다식, 스트림, java.time 패키지, Optional, 함수형 인터페이스, 인터페이스 default 메서드
 - 자바 11(LTS): String 메서드 추가
 - 자바 14: Switch문 (표준화 됨), record
 - 자바 17(LTS): Sealed Classes (표준화 됨)

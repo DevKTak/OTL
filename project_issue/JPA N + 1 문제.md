@@ -61,7 +61,7 @@
 > **만약 Accommodation 테이블에 숙소가 1000개 있었다면, 숙소 한번 조회하려다가 1001번의 쿼리가 나가는 것입니다.**
 
 ## ✅ 문제 해결 
-### N + 1 문제를 해결하기 위한 시도 1
+### ➲ N + 1 문제를 해결하기 위한 시도 1
 <img width="1077" alt="image" src="https://github.com/DevKTak/OTL/assets/68748397/0cec0490-7192-435b-9fb2-bba9e8483719">
 
 <img width="2088" alt="image" src="https://github.com/DevKTak/OTL/assets/68748397/f5385648-5e9b-4cae-87b4-8d3229b58263">
@@ -71,12 +71,17 @@
 > 
 > **결론: Fetch Join은 단일 관계의 자식 테이블에 사용하여야 하고, 2개 이상의 OneToMay 자식 테이블에 Fetch Join을 선언하게되면 위와 같은 예외가 발생합니다.**
 
-### N + 1 문제를 해결하기 위한 시도 2
+### ➲ N + 1 문제를 해결하기 위한 시도 2
 <img width="603" alt="image" src="https://github.com/DevKTak/OTL/assets/68748397/5a62f491-441a-4179-ac57-eee0200bdadd">
 
 <img width="374" alt="image" src="https://github.com/DevKTak/OTL/assets/68748397/8d90574e-491c-421a-ac8c-7a7b008a0878">
 
 Fetch Join 처럼 한방 쿼리는 아니지만 Hibernate의 배치 사이즈 옵션을 사용하였습니다.   
+
+**참고: 테스트 코드 전용 애노테이션**
+```
+@TestPropertySource(properties = "spring.jpa.properties.hibernate.default_batch_fetch_size=100")
+```
 
 위에 [N + 1 쿼리 로그] 캡처 사진에서 보셨다싶이
 ```sql
@@ -90,6 +95,9 @@ select * from room where  accommodation_id in (1, 2);
 **참고**   
 in절 파라미터로 1,000개 이상을 주었을 때 너무 많은 in절 파라미터로 인해 문제가 발생할 수 도 있기 때문에 보통 옵션값으로 1,000 이상을 주지 않는다고 합니다.   
 Accommodation(숙소)가 1,000개 까지는 1 + 1 = 2 번의 쿼리로 끝낼 수 있겠군요!
+
+## ✅ N + 1 문제 결론
+batch fetch가 활성화되었을 때 Hibernate는 많은 쿼리를 준비하게 되고, 이 과정에서 많은 메모리를 잡아먹게 됩니다. 따라서 전역적으로 적용하는 batch_size는 10, 50 같은 작은 숫자로 적용하고, 커다란 batch 작업이 필요할 때에는 @BatchSize를 이용해 큰 값을 설정해주는 것이 이상적이라고 합니다.
 
 ## ✅ 해결 과정에서 추가로 생긴 의문점
 <img width="917" alt="image" src="https://github.com/DevKTak/OTL/assets/68748397/142eeb81-9cbf-423e-8386-36fae27cec20">
