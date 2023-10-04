@@ -100,7 +100,7 @@ TreeMap은 이진탐색트리의 문제점을 보완한 레드-블랙 트리로 
 ```
 
 ```
-Q. LingkedHashMap이란  
+Q. LinkedHashMap이란  
 A: HashMap의 모든 기능은 그대로 사용할 수 있다.
 추가적으로, 저장된 데이터들의 순서를 유지한다.
 순서를 유지하기 위해 이중 연결 리스트 (Doubly Linked List)를 사용한다.
