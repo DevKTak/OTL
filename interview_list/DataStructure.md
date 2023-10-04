@@ -83,6 +83,13 @@ A. 첫 element를 add 할 때 배열의 resize가 발생하고 배열 크기는 
 ```
 
 ```
+Q. Java에서 HashMap 충돌을 관리하는 방법
+A.
+1. 버킷 사이즈 조절: HashMap이 처음 생성되면 버킷사이즈는 16이고 16의 75%가 임계점이므로 threshold는 12가 된다. 만약 버킷에 데이터가 저장되어 그 수가 12를 넘어가면 버킷의 사이즈는 원래 사이즈의 2배인 32가 된다. 그럼 threahold도 2배 커진 24가 된다.
+2. Linked List O(N) + Red Black Tree O(logN): 충돌 초기에는 separate chaining 방식으로 Linked List를 이용하여 충돌에 대응한다. 지정된 임계점이 넣으면 Red Black Tree 방식으로 객체들을 저장한다.
+```
+
+```
 Q. List vs Set vs Map
 A.
 - List는 기본적으로 데이터들이 순서대로 저장되며 중복을 허용한다.
