@@ -12,7 +12,7 @@ Presentation Layer -> View와 Controller,
 Business Layer -> Service   
 Persistence Layer -> DAO   
 Database Layer -> 데이터베이스 부분   
-이렇게 계층 아키텍쳐를 구현하는 방법 중 하나로 MVC 패턴의 Model, View, Controller가 사용됩니다.
+`이렇게 계층 아키텍쳐를 구현하는 방법 중 하나로 MVC 패턴의 Model, View, Controller`가 사용됩니다.
 
 <div style="display: flex">
   <img width="50%" alt="image" src="https://github.com/f-lab-edu/hotel-java/assets/68748397/c31b7d52-1aaa-4a60-bd65-11f44c6dbc59">
