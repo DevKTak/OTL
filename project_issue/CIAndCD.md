@@ -131,3 +131,7 @@ jobs:
 ```
 > 각 속성의 역할은 주석의 내용과 같습니다.   
 > 보안이 필요한 값들은 **`${{ secrets.키값 }}`** 와 같이 표현 하였으며, 실제 키와 밸류는 Github Repository의 Actions secrets and variables 페이지에 저장해 놓았습니다.
+
+**참고**
+10시간을 버렸던 상황: secrets으로 작성한 변수값들이 다 null 값으로 인하여 빌드 실패   
+이유: <img width="1117" alt="스크린샷 2023-10-13 오전 10 59 38" src="https://github.com/f-lab-edu/hotel-java/assets/68748397/ae6a20ee-710d-4f4b-9c59-242f91dce572">
