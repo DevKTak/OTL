@@ -184,9 +184,9 @@ Room mergedRoom = entityManager.merge(room);
 ```
 
 ```java
-2. 
-room.changeStockBatchDateTime(now);
+2.
 Room persistRoom = roomRepository.findById(room.getId());
+persistRoom.changeStockBatchDateTime(now);
 ```
 
 1. 가급적이면 EntityManager를 직접 사용하는 로직을 자제하는 편이 좋다고 생각되었습니다.   
