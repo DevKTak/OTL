@@ -83,6 +83,18 @@ A. 첫 element를 add 할 때 배열의 resize가 발생하고 배열 크기는 
 ```
 
 ```
+Q. HashTable vs CouncurrentHashMap
+A. 
+HashTable: 
+- 모든 메소드에 동기화 되어 있습니다. 즉, 한번에 하나의 스레드만 HashTable 메소드를 사용할 수 있습니다. 고로 멀티스레드 환경에서 성능이 떨어집니다.
+- 키와 값에 null을 허용하지 않습니다.
+
+CouncurrentHashMap
+- 세분화된 잠금(lock splitting) 및 분할 잠금(split locks) 등의 기술을 사용하여 세분화된 동기화를 제공합니다. 이는 동시에 여러 스레드에서 안전하게 읽고 쓸 수 있도록 합니다.
+- 키와 값에 null을 허용합니다.
+```
+
+```
 Q. Java에서 HashMap 충돌을 관리하는 방법
 A.
 1. 버킷 사이즈 조절: HashMap이 처음 생성되면 버킷사이즈는 16이고 16의 75%가 임계점이므로 threshold는 12가 된다. 만약 버킷에 데이터가 저장되어 그 수가 12를 넘어가면 버킷의 사이즈는 원래 사이즈의 2배인 32가 된다. 그럼 threahold도 2배 커진 24가 된다.

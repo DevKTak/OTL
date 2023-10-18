@@ -22,6 +22,31 @@
 ### Asynchronous && Non-Blocking
 - 비동기 방식의 논블로킹 방식은 '작업'에 대한 서로의 자유도가 높습니다. 각자 할일을 수행하며, 필요한 시점에 각자 결과를 처리합니다.
 
+---
+
+- **기다림** Blocking / **기다리지 않음** Non-blocking
+- **내가 함** Synchronous / **다른 사람 시킴** Asynchronous
+
+!https://blog.kakaocdn.net/dn/s4GhX/btry69JJgmj/LkjtlqXss4xSsMQUCnjx21/img.png
+
+1. Sync-Blocking
+    
+    앞의 blocking 설명과 사실상 동일합니다. 내가 복합기 앞으로 갑니다. 시작 버튼을 누릅니다. 다른 일 못하고 기다립니다. 완료되면 그제야 내 자리로 돌아가 스캔 완료된 파일을 사용합니다.
+    
+2. Sync-NonBlocking
+    
+    앞의 non-blocking 설명과 동일합니다. 내가 복합기 시작 버튼을 누릅니다. 자리로 돌아옵니다. 틈틈이 스캔이 완료되었는지 확인해줘야 합니다. 하지만 다른 일을 할 수 있습니다. 다른 일을 못 하면서까지 앞에 가서 기다리지는 않습니다.
+    
+3. Async-Blocking
+    
+    드디어 심부름꾼이 등장합니다. 나는 내 자리에 그대로 앉아있습니다. 나는 다른 일을 하는 동안, 심부름꾼에게 스캔을 하도록 시킵니다. 심부름꾼이 복합기 앞으로 갑니다. 시작 버튼을 누릅니다. 이 사람은 다른 일 못하고 이것만 기다립니다. 완료되면 심부름꾼은 내 자리로 돌아와 스캔이 완료되었다고 알려줍니다.
+    
+4. Async-NonBlocking
+    
+    나는 내 자리에 앉아서 내 일하는 동안, 심부름꾼에게 스캔을 하도록 시킵니다. 심부름꾼이 복합기 앞으로 가서 시작 버튼을 누릅니다. 심부름꾼은 스캔을 기다리면서 커피를 내려 마시면서 일기를 씁니다. 일기를 쓰는 동안, 틈틈이 스캔이 완료되었는지 곁눈질로 확인합니다. 스캔이 완료되면 내 자리로 돌아와 스캔이 완료되었다고 알려줍니다.
+
+
+
 **참고**   
 > - https://velog.io/@nittre/%EB%B8%94%EB%A1%9C%ED%82%B9-Vs.-%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9-%EB%8F%99%EA%B8%B0-Vs.-%EB%B9%84%EB%8F%99%EA%B8%B0
 > - https://choi-geonu.medium.com/%EB%B0%B1%EC%97%94%EB%93%9C-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%93%A4%EC%9D%B4-%EC%95%8C%EC%95%84%EC%95%BC%ED%95%A0-%EB%8F%99%EC%8B%9C%EC%84%B1-2-%EB%B8%94%EB%A1%9C%ED%82%B9%EA%B3%BC-%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9-%EB%8F%99%EA%B8%B0%EC%99%80-%EB%B9%84%EB%8F%99%EA%B8%B0-e11b3d01fdf8
