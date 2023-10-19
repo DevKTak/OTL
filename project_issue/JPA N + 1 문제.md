@@ -12,7 +12,7 @@
 
 ## ✅ N + 1 문제가 발생한 상황
 ### ➲ Entity 간의 관계   
-<img width="844" alt="image" src="https://github.com/DevKTak/OTL/assets/68748397/b44c92e0-112b-4493-b203-fd992a970f72">
+<img width="861" alt="image" src="https://github.com/f-lab-edu/hotel-java/assets/68748397/83343ce9-9b7f-4e71-9a70-d170f8066639">
 
 #### **Accommodation(숙소) Entity**
 <img width="599" alt="image" src="https://github.com/DevKTak/OTL/assets/68748397/3b731e90-3940-4414-adda-c0aa3790ffa2">
