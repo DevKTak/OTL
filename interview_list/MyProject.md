@@ -11,6 +11,16 @@ A. Cross-Site Scripting의 약어로 공격하려는 사이트에 스크립트�
 Q. XSS를 필터로 막는다면 어떤 메커니즘으로 막을 수 있는건가요?
 A. Lucy-xss-servlet-filter 라이브러리로 form data 대해서 방어하고 request body로 넘어오는 JSON 데이터 같은 경우는 클라이언트로 내보내는 단계에서 HttpMessageConverter를 활용해서 xss 방지 처리해줍니다.
 
+Q. CSRF는?
+A. 
+1. Router.java에 @CsrfToken 애노테이션이 있으면 AOP를 활용하여 CsrfTokenAspect.java에서 session.setAttribute(CSRF_TOKEN_HASHED_KEY 상수 키, 암호화한 임의의 값);
+session.setAttribute(CSRF_TOKEN_HASHED_VALUE 상수 키, 암호화한 임의의 값);
+
+2. CUD에 해당하는 요청이 있을 시 
+url: '${pageUri}/api/grade-update?${CSRF_TOKEN_HASHED_KEY}=${CSRF_TOKEN_HASHED_VALUE}', 와 같이 호출한다.
+
+3. Controller.java에 @CsrfTokenValid 애노테이션이 있으면 AOP를 활용하여 CsrfTokenValidAspect.java에서 파라미터로 넘어온 밸류 값들과 세션에 있는 값을 비교하여 CSRF 토큰이 유효한지 체크한다.
+
 Q. Form 데이터와 JSON 데이터 상에 어떤 차이가 있길래 Lucy-xss-servlet-filter는 Form 데이터로 넘어오는 파라미터에 대해서만 방어를 할 수 있을까요?
 A. 형식과 전송방식에 차이가있습니다. Form 데이터는 application/x-www-form-urlencoded Content-Type으로 전송되고 JSON 데이터는 application/json로 전송됩니다.
 

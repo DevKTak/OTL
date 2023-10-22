@@ -62,7 +62,7 @@ Aspect 클래스에 정의된 부가 기능을 사용하기 위해서 원하는 
 
 1. target에 대한 호출이 들어오면 AOP Proxy가 이를 가로채서(Intercept) 가져옵니다.
 2. AOP Proxy에서 **`Transaction Advisor`** 가 `commit` 또는 `rollback` 등의 트랜잭션 처리를 합니다.
-3. 트랜잭션 처리 외에 다른 부가 기능이 있을 경우 해당 `Custom Advisor`에서 그 처리를 합니.
+3. 트랜잭션 처리 외에 다른 부가 기능이 있을 경우 해당 `Custom Advisor`에서 그 처리를 합니다.
 4. 각 Advisor에서 부가 기능 처리를 마치면 **`Target Method`** 를 수행합니다.
 5. Interceptor chain을 따라 Caller에게 결과를 다시 전달합니다.
 
