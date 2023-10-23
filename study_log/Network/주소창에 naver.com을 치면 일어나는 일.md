@@ -6,7 +6,7 @@
 4. 브라우저가 해당 서버와 **`TCP 연결`** 을 시작
 5. 브라우저가 웹서버에 **`HTTP 요청`** 을 보냄
 6. 웹서버 -> was -> Filter
-7. 디스패처 서블릿이 요청을 받아서 핸들러 매핑에게 핸들러를 조회(@RequestMapping)
+7. 디스패처 서블릿이 요청을 받아서 핸들러 매핑을 통해 요청 URL에 매핑된 핸들러(컨트롤러)를 조회(@RequestMapping)
 8. Interceptor -> 핸들러 어댑터 -> 핸들러 실행
 9. 디스패처 서블릿으로 ModelAndView 반환
 10. viewResolver 호출
