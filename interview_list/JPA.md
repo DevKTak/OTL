@@ -14,7 +14,7 @@
 > A.
 > ORM: Object-Relational Mapping의 약어로 객체와 관계형 데이터베이스를 Mapping 시켜주는 것을 말한다. 
 > JPA: Java Persistence API의 약자로 Java ORM 기술에 대한 API 표준 명세이다.
-> - 장점: 1차 캐시, 쓰기지연, 더티체킹, 지연로딩, 컴파일 시점에 오류 확인, DB에 종속적이지 않음
+> - 장점: 1차 캐시, 쓰기지연, 더티체킹, 지연로딩, 컴파일 시점에 오류 확인, DB에 종속적이지 않음   
 > Mybatis: Java 클래스 코드와 SQL 코드를 Mapping 시켜준다.
 > - 장점: SQL 쿼리를 직접 작성하므로 최적화된 쿼리를 구현할 수 있다.
 
