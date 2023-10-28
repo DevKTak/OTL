@@ -44,4 +44,5 @@
 > ## 📝 오늘의 추가 지식 Log [Link]()
 >> [2023.07](https://github.com/DevKTak/OTL/blob/main/TIL/2023/2023.07.md)   
 >> [2023.08](https://github.com/DevKTak/OTL/blob/main/TIL/2023/2023.08.md)   
->> [2023.09](https://github.com/DevKTak/OTL/blob/main/TIL/2023/2023.09.md)   
+>> [2023.09](https://github.com/DevKTak/OTL/blob/main/TIL/2023/2023.09.md)
+>> [2023.10](https://github.com/DevKTak/OTL/blob/main/TIL/2023/2023.10.md)   
