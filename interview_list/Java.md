@@ -89,11 +89,10 @@ A.
 Q. Java 몇까지 써봤는지? 자바 버전별 새로생긴 부분 정리
 A.
 - 자바 8(LTS): 람다식, 스트림, java.time 패키지, Optional, 함수형 인터페이스, 인터페이스 default 메서드
-
-자바10 var?
-
+- 자바 9: optional에 ifPresentOrElse 추가
+- 자바 10: var
 - 자바 11(LTS): String 메서드 추가
-- 자바 14: Switch문 (표준화 됨), record
+- 자바 14: switch문 (표준화 됨), record, instanceof 개선
 - 자바 17(LTS): Sealed Classes (표준화 됨)
 - 자바 21(LTS): null에 해당하는 케이스를  스위치 내부에서 검사할 수 있음
 ```
@@ -133,7 +132,7 @@ A.
 - final variable: 변하지 않는 상수값이 되어 새로 할당할 수 없는 변수가 됩니다.
 ```
 
-<img width="579" alt="image" src="https://github.com/FastCampusKDTBackend/KDT_Y_BE_Toy_Project2/assets/68748397/7826cf33-c9e4-41e1-b505-fabe7f17aeb0">
+<img width="803" alt="image" src="https://github.com/FastCampusKDTBackend-Toy4/KDT_Y_BE_Toy_Project2/assets/68748397/8524fe04-8cc8-4644-a24f-32be65f15420">
 
 ```
 Q. 에러(Error)와 예외(Exception)의 차이점
