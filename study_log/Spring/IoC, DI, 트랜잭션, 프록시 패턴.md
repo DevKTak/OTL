@@ -21,7 +21,7 @@
 - **Durability(지속성):** 트랜잭션이 성공적으로 끝나면 그 결과는 항상 기록되어야 한다.
 - **참고:** https://continuetochallenge.tistory.com/127
 
-## 트랜잭션 격리 수준(Isolation Level)
+## 트랜잭션 격리 수준(Isolation Leve l)
 - **READ UNCOMMITED:** 커밋되지 않은 데이터 읽기
 - **READ COMMITED:** 커밋된 데이터만 읽기
 - **REPEATABLE READ:** 한 트랜잭션 내에서 같은 읽기 보장
@@ -56,7 +56,7 @@ Aspect 클래스에 정의된 부가 기능을 사용하기 위해서 원하는 
 그렇게되면 여러곳에서 반복적으로 Aspect를 호출해야 하고 유지보수성이 크게 떨어집니다.
 그래서 Spring에서는 Target 클래스 혹은 그의 상위 인터페이스를 상속하는 `프록시 클래스`를 생성하고 프록시 클래스에서 부가 기능에 관련된 처리를 하도록 합니다. 이렇게 해야 Target 클래스에서 Aspect를 알 필요없이 순수한 비즈니스 로직에 집중할 수 있습니다.
 
-## Proxy 형태로 동작하는 @Transactional AOP
+## Proxy 형태로 동작하는 @Transactional, AOP
 
 <img width="641" alt="image" src="https://github.com/FastCampusKDTBackend/KDT_Y_BE_Toy_Project1/assets/68748397/1fe89dd1-4c2e-4ec1-b19a-99e9e5e078d2">
 
