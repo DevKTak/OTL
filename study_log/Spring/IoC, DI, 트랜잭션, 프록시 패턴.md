@@ -21,7 +21,7 @@
 - **Durability(지속성):** 트랜잭션이 성공적으로 끝나면 그 결과는 항상 기록되어야 한다.
 - **참고:** https://continuetochallenge.tistory.com/127
 
-## 트랜잭션 격리 수준(Isolation Leve l)
+## 트랜잭션 격리 수준(Isolation Level)
 - **READ UNCOMMITED:** 커밋되지 않은 데이터 읽기
 - **READ COMMITED:** 커밋된 데이터만 읽기
 - **REPEATABLE READ:** 한 트랜잭션 내에서 같은 읽기 보장
