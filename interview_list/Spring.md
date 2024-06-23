@@ -6,11 +6,7 @@
 > - **OCP(Open-Closed Priciple): `개방-폐쇄 원칙`**   
 >   - 확장에는 열려있어야하고 변경에는 닫혀 있어야 한다.
 > - **LSP(Liskov Substitution Principle): `리스코프 치환 원칙`**
->      - 상위 타입의 객체를 하위 타입의 객체로 치환해도 상위 타입을 사용하는 프로그램은 정상적으로 동작해야 한다.
->      - ex. Rectangle rectangle = new Square();
->		 rectangle.setWidth(10);
->		 rectangle.setHeight(5);		
->		System.out.println(rectangle.getArea());
+> - 상위 타입의 객체를 하위 타입의 객체로 치환해도 상위 타입을 사용하는 프로그램은 정상적으로 동작해야 한다.
 > - **ISP(Interface Segregation Principle) : `인터페이스 분리 원칙`**   
 >      - 클라이언트는 사용하지 않는 인터페이스에 강제로 의존해서는 안된다.
 (바꿔 말하면, 하나의 큰 인터페이스보다는 여러개의 작은 인터페이스를 구현하는 것이 낫다라고도 할 수 있습니다)
@@ -29,7 +25,10 @@ A.
 - OCP(Open-Closed Priciple): 개방-폐쇄 원칙   
     - 확장에는 열려있어야하고 변경에는 닫혀 있어야 한다.
 - LSP(Liskov Substitution Principle): 리스코프 치환 원칙
-    - 상위 타입의 객체를 하위 타입의 객체로 치환해도 상위 타입을 사용하는 프로그램은 정상적으로 동작해야 한다.   
+    - 상위 타입의 객체를 하위 타입의 객체로 치환해도 상위 타입을 사용하는 프로그램은 정상적으로 동작해야 한다.
+    - ex. Rectangle rectangle = new Square();
+          rectangle.setWidth(10); rectangle.setHeight(5);		
+          System.out.println(rectangle.getArea());
 - ISP(Interface Segregation Principle) : 인터페이스 분리 원칙   
     - 클라이언트는 사용하지 않는 인터페이스에 강제로 의존해서는 안된다.
     - (바꿔 말하면, 하나의 큰 인터페이스보다는 여러개의 작은 인터페이스를 구현하는 것이 낫다라고도 할 수 있습니다)
