@@ -12,7 +12,7 @@
 
 > **Q. JPA와 Mybatis 장단점**   
 > A.
-> ORM: Object-Relational Mapping의 약어로 객체와 관계형 데이터베이스를 Mapping 시켜주는 것을 말한다. 
+> ORM: Object-Relational Mapping의 약어로 객체와 관계형 데이터베이스를 Mapping 시켜주는 것을 말한다.  
 > JPA: Java Persistence API의 약자로 Java ORM 기술에 대한 API 표준 명세이다.
 > - 장점: 1차 캐시, 쓰기지연, 더티체킹, 지연로딩, 컴파일 시점에 오류 확인, DB에 종속적이지 않음
 > 
